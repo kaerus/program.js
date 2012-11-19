@@ -103,7 +103,7 @@ function parse(line,context) {
 		return c[n] ? c[n] : c;
 	},Program);
 
-	if(!node || node === Program) throw new Error(line.join(' ') + ": not found." );
+	if(!node || node === Program) throw new Error(line.join(' ') + ": not found." );
 
 	var args = path.slice(getPath(node).length), 
 		params; 
