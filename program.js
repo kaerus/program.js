@@ -241,9 +241,21 @@ function evaluateOption(option,value){
 				Error("Unknown type: " + o);
 				break;					
 		}
-		if(v1 && v1 !== v2)
-			throw new Error("Parameter mismatch " + value);
 
+		if(v1){
+			if(isArray(v1)) {
+				v1.forEach(function(v){
+					if(isNaN(v2)) if(v === v2) return v2;
+					else if(Number(v) === v2) return v2;
+				});
+			} 
+			else {
+				if(isNaN(v2)) if(v === v2) return v2;
+				else if(Number(v) === v2) return v2;	
+			}
+
+			throw new Error("Parameter mismatch " + value);
+		}
 		return v2;
 	}	
 	
