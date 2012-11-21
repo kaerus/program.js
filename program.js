@@ -178,10 +178,26 @@ function evaluateOption(option,value){
 			case 'integer':
 				v2 = parseInt(value,10);
 				if(isNaN(v2)) throw new Error("Not an integer: " + value);
-				break;		
-			case 'float':
+				break;	
+			case 'hex':
+			case 'hexadecimal':
+				v2 = parseInt(value,16);
+				if(isNaN(v2)) throw new Error("Not a hexadecimal: " + value);
+				break;
+			case 'oct':
+			case 'octal':
+				v2 = parseInt(value,8);
+				if(isNaN(v2)) throw new Error("Not an octal: " + value);
+				break;
+			case 'bin':	
+			case 'binary':
+				v2 = parseInt(value,2);
+				if(isNaN(v2)) throw new Error("Not a binary: " + value);
+				break;					
+			case 'dec':
+			case 'decimal':
 				v2 = parseFloat(value);	
-				if(isNaN(v)) throw new Error("Not an float: " + value);
+				if(isNaN(v2)) throw new Error("Not a decimal: " + value);
 				break;
 			case 'str':	
 			case 'string':
