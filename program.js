@@ -254,7 +254,7 @@ function evaluateOption(option,value){
 				else if(Number(v) === v2) return v2;	
 			}
 
-			throw new Error("Parameter mismatch " + value);
+			throw new Error("Value mismatch: " + value);
 		}
 		return v2;
 	}	
