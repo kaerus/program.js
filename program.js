@@ -20,9 +20,8 @@ Program = {};
 
 Program.run = function(lines){
 
-	if(typeof lines === 'string') {
+	if(typeof lines === 'string') {
 		lines = lines.split(/\r?\n/);
-
 	}	
 
 	var error, 
@@ -124,7 +123,7 @@ function getParams(node,args) {
 	/* option-1 arg-1, option-2=arg-2 ...+ args */
 	options.forEach(function(option){
 		o = Object.keys(option).filter(function(f){if(f) return f})[0];
-		e = undefined;
+		v = undefined;
 		/* search for param */	
 		for(i = 0, l = args.length; i < l; i++){
 			if(args[i].indexOf(o) === 0){
@@ -184,7 +183,7 @@ function evaluateOption(option,value){
 			case 'str':	
 			case 'string':
 				v2 = value.toString();
-				if(!v2) Error("Not a string: " + value);
+				if(!v2) throw new Error("Not a string: " + value);
 				break;
 			case 'bool':
 			case 'boolean':
@@ -249,7 +248,7 @@ Program.$ = function(){
 		return node;
 
 	if(func) {
-		context = context || global;
+		context = context || null;
 
 		if(context === 'function') 
 			context = context();
