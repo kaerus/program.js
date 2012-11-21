@@ -165,8 +165,8 @@ function evaluateOption(option,value){
 		option[o].forEach(function(v){
 			if(v === value) return value;
 		});
-		
-		throw new Error("Value mismatch: " + JSON.stringify(o));
+
+		throw new Error("Value mismatch: " + JSON.stringify(v));
 	}
 	else{
 		/* option type and value */
