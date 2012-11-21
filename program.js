@@ -28,10 +28,6 @@ Program.run = function(lines){
 		context = [], 
 		path, line, i, l;
 
-	function in_context(){
-		return context.length ? context[context.length-1] + ' ': "";
-	}
-
 	for(i = 0, l = lines.length; i < l; i++) {
 		line = lines[i];
 		/* trim whitespace */
@@ -164,6 +160,13 @@ function evaluateOption(option,value){
 		if(value !== option[o]) throw new Error("Value mismatch: " + o);
 
 		return value;
+	}
+	else if(isArray(option[o])){
+		option[o].forEach(function(v){
+			if(v === value) return value;
+		});
+		
+		throw new Error("Value mismatch: " + JSON.stringify(o));
 	}
 	else{
 		/* option type and value */
