@@ -26,7 +26,7 @@ Program.run = function(lines){
 
 	var error, 
 		context = [], 
-		path, line, i, l;
+		path, line, i, l, c;
 
 	for(i = 0, l = lines.length; i < l; i++) {
 		line = lines[i];
@@ -43,7 +43,7 @@ Program.run = function(lines){
 		}
 
 		try {
-			var c = parse(line,context);
+			c = parse(line,context);
 		} catch(err) {
 			error = err;
 			break;
@@ -99,7 +99,7 @@ function parse(line,context) {
 	},Program);
 
 	if(!node || node === Program) throw new Error(line.join(' ') + ": not found." );
-
+	
 	var args = path.slice(getPath(node).length), 
 		params; 
 
@@ -306,33 +306,6 @@ Program.$ = function(){
 		/* add node */
 		this[name] = {};
 
-		/* add reference to root */
-		Object.defineProperty(this[name],'^',{
-			enumerable: false,
-			writable: false,
-			value: Program
-		});
-
-		/* add reference to parent */
-		Object.defineProperty(this[name],'@',{
-			enumerable: false,
-			writable: false,
-			value: this
-		});
-
-		/* allow chaining by $ */
-		Object.defineProperty(this[name],'$',{
-			enumerable: false,
-			writable: false,
-			value: Function.prototype.call.bind(Program.$,this[name])
-		});
-
-		/* End of context */
-		Object.defineProperty(this[name],'!!',{
-			enumerable: false,
-			writable: false,
-			value: null
-		});
 	}
 
 	/* add name hash key */
@@ -342,7 +315,27 @@ Program.$ = function(){
 		value: name
 	});
 
+	/* add reference to parent */
+		Object.defineProperty(this[name],'@',{
+			enumerable: false,
+			writable: false,
+			value: this
+		});
 
+	/* add reference to root */
+	Object.defineProperty(this[name],'^',{
+		enumerable: false,
+		writable: false,
+		value: Program
+	});
+
+	/* allow chaining by $ */
+	Object.defineProperty(this[name],'$',{
+		enumerable: false,
+		writable: false,
+		value: Function.prototype.call.bind(Program.$,this[name])
+	});
+		
 	/* Add a help string */
 	if(help){
 		Object.defineProperty(this[name],'?',{
