@@ -390,8 +390,10 @@ Program.findContext = function(path){
     
     /* search for matching nodes */
     /* under a parent context */
-    path = path.split(' ').filter(function(f){ return f });
-    search = path.pop(),
+    path = path.split(' ').filter(function(f){if(f) return f });
+    
+    search = path.pop();
+
     context = this.getContext(path);
 
     return Object.keys(context).filter(function(f){
@@ -439,24 +441,9 @@ Program.help = function(context) {
     }
     else if(typeof context === "string") {
         context = this.findContext(context);
-
-        if(!context) {
-            console.log("Not found");
-            return;
-        }
-
-        if(!isArray(context)) { 
-            showHelp(context,true);
-            context = getSubNodes(context);
-        }           
     }
 
-    if(isArray(context) && context.length > 0) {
-        context.forEach(function(node){
-            showHelp(node);
-        });
-    }   
-    
+    return isArray(context) ? context.map(function(m){return m['#']}) : context;
 }
 
 module.exports = Program;
