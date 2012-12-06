@@ -1,0 +1,33 @@
+{
+  "name": "program",
+  "version": "0.1.0",
+  "description": "program.js",
+  "keywords": [
+    "program",
+    "cli",
+    "commander",
+    "command line interface"
+  ],
+  "author": { 
+    "name": "Kaerus",
+    "email": "contact@kaerus.com",
+    "web": "http://kaerus.com"
+  },
+  "contributors": [
+    "anders elo <anders@kaerus.com>"
+  ],
+  "dependencies": {
+  },
+  "directories": {
+    "bin":"./bin",
+    "conf":"./conf"
+  },
+  "bugs": {
+    "url": "https://github.com/kaerus/program.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kaerus/program.js"
+  },
+  "license": "APACHE2.0"
+}
