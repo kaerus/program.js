@@ -1,10 +1,10 @@
 program.js
 ==========
-Note: this is work in progress so everything is subject to change.
+This library was originally developed for the <a href="https://github.com/kaerus/arangodep project">arangodep</a> project.  
 
 Synopsis
 --------
-This library attaches a contextual command line interface to your programs.
+This library attaches a contextual command line interface to programs.
 
 Introduction
 ------------
@@ -79,7 +79,7 @@ daemon> route add<TAB>
 daemon> route add <TAB>
 	    add <ipv4>: Network address	    
 ```	 
-Command line interaction becomes much more natural and easier to explore.
+Command line interaction now becomes much more natural and it is much easier to explore commands and options.
 
 Design
 ======
@@ -97,7 +97,8 @@ However a better approach is to provide asynchrounous communications channels so
 Controller
 ----------
 
-Defining the command structure.
+###Defining commands
+
 ```
 // creates a context node
 Program.$("context","A command context");
