@@ -1,5 +1,6 @@
 program.js
 ==========
+Note: this is work in progress so everything is subject to change.
 
 Synopsis
 --------
@@ -57,29 +58,90 @@ Now, to interact with your utility you need to pipe it through standard input/ou
 Program.js aims to solve that by daemonizing a program into a backgorund process and at the same time create a telnet interface.
 
 When not being bound by the constraints of a unix shell users can now interact with the software differently.
-For instance command line options and help can now automatically be expanded by pressing <TAB> instead of the more cumbersome '?' character.
+For instance command line options and help can now automatically be expanded by pressing ```<TAB>``` instead of the more cumbersome '?' character.
 ```
 Mytool v.1.0.0, (c) Mytool inc 2013, all rights reserved.
 daemon> <TAB>
-Help: 
 			route: Network routes
 	  		  arp: Address resolution
       		  egp: Exterior gateteway protocols
      		 icmp: Icmp utility  
 daemon> ro<TAB>
 daemon> route
-daemon> route<TAB>
-Help: route
+daemon> route <TAB>
 			  add: Add route
 	  		  del: Delete route
       		 show: Show routes
-daemon> route add<TAB> 	
-Help: route add		
+daemon> route add<TAB> 			
 		add <ipv4>: Network address
 	netmask <ipv4>: Netmask
 	gateway <ipv4>: Gateway address
-daemon> 
+daemon> route add <TAB>
+	    add <ipv4>: Network address	    
 ```	 
+Command line interaction becomes much more natural and easier to explore.
+
+Design
+======
+Program.js aims to provide a command controller that can be used to attach commands in a contextual tree like structure and provide an interface so that user agents can interact with worker functions or processes.
+The controller is responsible for parsing input and redirecting input/output through communication channels.
+Worker processes should be asynchrounous and not interfeer with the CLI, similar to a typical GUI application.
+The controller interfaces with the user agent over an user communications channel (UC) and with the program/function over an inter process communications channel (IPC). 
+
+```
+User Agent <--UC--> Controller <--IPC--> Worker
+```
+The IPC can in its simplest form be a proxy function that passes parameters and arguments to the destination function.
+However a better approach is to provide asynchrounous communications channels so that the user terminal doesn't hang while the command completes its execution.
+
+Controller
+----------
+
+Defining the command structure.
+```
+// creates a context node
+Program.$("context","A command context");
+
+// creates a command under a context
+Program.$("context").$(command,"command","A simple command");
+
+// creates a command taking a say parameter that defaults to "hello world"
+Program.$(console_log,"output","Output command",
+	{"say":{"string":""},"":"hello world","?":"say something"}
+);
+
+// Single non-optional parameter (without a default value)
+Program.$(console_log,"test","Test command",
+	{"test":{"ipv4":""},"?":"Test something"}
+);
+
+// Optional parameters (null default).
+Program.$(console_log,"test","Test command",
+	{"test":{"ipv4":""},"":null,"?":"Test something"},
+	{"test2":{"url":""},"":null,"?":"Url parameter"}
+);
+
+// Parameter value list 
+Program.$(console_log,"test","Test command",
+	{"test":{"string":["open","close"]},"?":"Test"}
+);
+
+// Parameter matching (TBD)
+Program.$(console_log,"test","Test command",
+	{"test":{"string":/[0-9]{4}/},"?":"Test 4 digits"}
+);
+
+...More to come...
+
+```
+
+Worker
+------
+TBD
+
+User Agent
+----------
+TBD
 
 Usage
 =====
@@ -87,7 +149,8 @@ TODO
 
 Status
 ======
-TODO
+* Design / Prototyping
+
 
 Contributions
 =============
