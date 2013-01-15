@@ -1,6 +1,6 @@
 program.js
 ==========
-This library was originally developed for the <a href="https://github.com/kaerus/arangodep project">arangodep</a> project.  
+This library was originally developed for the <a href="https://github.com/kaerus/arangodep">arangodep</a> project.  
 
 Synopsis
 --------
