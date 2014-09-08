@@ -21,7 +21,7 @@ describe('Program', function(){
 
         it("should have repl()",function(){
             Program.should.have.property('repl');
-            Program.repl.should.be.type('function');
+            Program.should.be.type('function');
         })
 
         it("should have daemonize()",function(){
@@ -43,37 +43,62 @@ describe('Program', function(){
         })
 
         describe('$("test")',function(){
-            var context;
-            
-            beforeEach(function(){
-                context = Program.$('test');
-            })
 
             it('name: #',function(){
+                var context = Program.$('test');
                 context.should.have.property('#');
                 context['#'].should.be.equal('test');
             })
 
             it('help: ?',function(){
+                var context = Program.$('test');
                 context.should.have.property('?');
                 context['?'].should.be.equal('test description');
             })
 
             it('parent: @',function(){
+                var context = Program.$('test');
                 context.should.have.property('@');
                 context['@'].should.be.equal(Program.$());  
             })
 
             it('self: $',function(){
+                var context = Program.$('test');
                 context.should.have.property('$');
                 context['$'].should.be.type('function');
                 context.$().should.be.equal(context);
             })
 
-            it('chain: test.$(test2).$(test3)',function(){
-                context.$('test2','test2 description').$('test3','test3 description');
+            it('two context nodes under same context',function(){
+                var context = Program.$('test');
+                context.$('test2','test2 description');
+                context.$('test3','test3 description');
                 context.should.have.property('test2');
-                context.$('test2').should.have.property('test3');
+                context.should.have.property('test3');
+            })
+
+            it('two context nodes chained under context',function(){
+                var context = Program.$('test');
+                context.$('test3','test3 description').$('test4','test4 description');
+                context.should.have.property('test3');
+                var c = context.$('test3');
+                c.should.have.property('test4');
+            })
+
+            it('arangodep issue',function(){
+                var context = Program.$('test');
+                context.$("add","Add source file(s)",app_add)
+                .$("controller","Controller module",app_add,
+                    {"path":{"string":""},"?":"controller path"},
+                    {"url":{"string":""},"?":"route url"});
+
+                context.$("rm","Remove source file(s)",app_rm)
+                    .$("controller","Controller module",app_rm,
+                        {"path":{"string":""},"?":"controller path"},
+                        {"url":{"string":""},"?":"route url"}); 
+
+                function app_add(){}
+                function app_rm(){}
             })
         })
     })  
