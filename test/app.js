@@ -19,5 +19,5 @@ function ls_cmd(params,args){
 	var dir = path.resolve(args[0] || './'),
 		files = fs.readdirSync(dir);
 
-	Program.info("dir is", dir);
+	console.log("dir is", dir);
 }
