@@ -1,6 +1,6 @@
 {
   "name": "program",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "program.js",
   "keywords": [
     "program",
@@ -9,18 +9,25 @@
     "command line interface"
   ],
   "author": { 
-    "name": "Kaerus",
-    "email": "contact@kaerus.com",
+    "name": "Anders Elo",
+    "email": "anders@kaerus.com",
     "web": "http://kaerus.com"
   },
   "contributors": [
     "anders elo <anders@kaerus.com>"
   ],
   "dependencies": {
+    "micropromise": "*",
+    "keypress": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
   },
   "directories": {
     "bin":"./bin",
-    "conf":"./conf"
+    "conf":"./conf",
+    "test":"./test"
   },
   "bugs": {
     "url": "https://github.com/kaerus/program.js/issues"
