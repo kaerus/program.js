@@ -16,7 +16,6 @@ context.$(
 );*/
 
 function ls_cmd(params,args){
-	Program.info("ls_cmd args:", JSON.stringify(args));
 	var dir = path.resolve(args[0] || './'),
 		files = fs.readdirSync(dir);
 
