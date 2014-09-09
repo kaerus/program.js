@@ -18,8 +18,6 @@
 
 /* Note: place this file in your bin directory and your application library in lib */
 
-require('..');
-
-require('./app');
+require('./main');
 
 Program.run(); 
