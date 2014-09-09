@@ -22,4 +22,4 @@ require('..');
 
 require('./app');
 
-Program.boot(); 
+Program.run(); 
