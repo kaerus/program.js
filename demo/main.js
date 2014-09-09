@@ -3,7 +3,8 @@ var fs = require('fs'),
 	Program = require('../');
 	
 /* create command contexts */
-Program.$("ls","List files",ls_cmd);
+Program.$("ls","List files",ls_cmd,
+	{'dir':{'string':null},"":"./","?":"dir to ls"});
 
 /*
 context.$(
@@ -15,7 +16,7 @@ context.$(
 );*/
 
 function ls_cmd(params,args){
-	var dir = path.resolve(args[0] || './'),
+	var dir = path.resolve(params.dir),
 		files = fs.readdirSync(dir);
 
 	process.stdout.write("dir: " + dir + "\n");
