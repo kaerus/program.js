@@ -18,7 +18,8 @@
   ],
   "dependencies": {
     "micropromise": "*",
-    "keypress": "*"
+    "keypress": "*",
+    "printf": "*"
   },
   "devDependencies": {
     "mocha": "*",

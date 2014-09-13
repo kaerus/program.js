@@ -135,6 +135,10 @@ describe('Program', function(){
             {ten: {"int":null, "?":"number ten"}}
             );
 
+            cmd = Program.$('cmd2');
+
+            cmd['&']['hello']['?'].should.be.equal("string")
+
             Program.run('cmd2 hello="hello world" ten 10');
         })
     })
