@@ -16,8 +16,13 @@ context.$(
 );*/
 
 function ls_cmd(params,args){
-	var dir = path.resolve(params.dir),
-		files = fs.readdirSync(dir);
+	var dir, files;
 
-	this.printf("dir: (%s)", dir);
+	try {
+		dir = path.resolve(params.dir),
+		files = fs.readdirSync(dir);
+		this.$.printf("dir: (%s)", dir);
+	} catch(e) {
+		this.$.log.error(e);
+	}
 }

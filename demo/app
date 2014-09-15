@@ -20,4 +20,6 @@
 
 require('./main');
 
+Program.application = "App";
+
 Program.run(); 
