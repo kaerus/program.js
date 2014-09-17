@@ -1,41 +1,41 @@
 {
-  "name": "program",
-  "version": "0.3.1",
-  "description": "program.js",
-  "keywords": [
-    "program",
-    "cli",
-    "commander",
-    "command line interface"
-  ],
-  "author": { 
-    "name": "Anders Elo",
-    "email": "anders@kaerus.com",
-    "web": "http://kaerus.com"
-  },
-  "contributors": [
-    "anders elo <anders@kaerus.com>"
-  ],
-  "dependencies": {
-    "micropromise": "*",
-    "keypress": "*",
-    "printf": "*"
-  },
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
-  },
-  "directories": {
-    "bin":"./bin",
-    "conf":"./conf",
-    "test":"./test"
-  },
-  "bugs": {
-    "url": "https://github.com/kaerus/program.js/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/kaerus/program.js"
-  },
-  "license": "APACHE2.0"
+    "name": "program",
+    "version": "0.3.2",
+    "description": "A tool for creating nodejs command utilities",
+    "keywords": [
+	"program",
+	"cli",
+	"commander",
+	"telnet",
+	"command line interface"
+    ],
+    "author": { 
+	"name": "Anders Elo",
+	"email": "anders@kaerus.com",
+	"web": "http://kaerus.com"
+    },
+    "contributors": [
+	"anders elo <anders@kaerus.com>"
+    ],
+    "dependencies": {
+	"micropromise": "*",
+	"printf": "*"
+    },
+    "devDependencies": {
+	"mocha": "*",
+	"should": "*"
+    },
+    "directories": {
+	"bin":"./bin",
+	"conf":"./conf",
+	"test":"./test"
+    },
+    "bugs": {
+	"url": "https://github.com/kaerus/program.js/issues"
+    },
+    "repository": {
+	"type": "git",
+	"url": "git://github.com/kaerus/program.js"
+    },
+    "license": "APACHE2.0"
 }
