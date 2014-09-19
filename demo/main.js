@@ -6,6 +6,10 @@ var fs = require('fs'),
 Program.$("ls","List files",ls_cmd,
 	{'dir':{'string':null},"":"./","?":"dir to ls"});
 
+var config = Program.$("config","Configuration");
+
+config.$("show","show configuration",show_config);
+
 /*
 context.$(
     module_upload,"add","Upload module",
@@ -25,4 +29,8 @@ function ls_cmd(params,args){
 	} catch(e) {
 		this.$.log.error(e);
 	}
+}
+
+function show_config(){
+    this.$.printf("# Configuration\n");
 }
