@@ -6,9 +6,8 @@ var fs = require('fs'),
 Program.$("ls","List files",ls_cmd,
 	{'dir':{'string':null},"":"./","?":"dir to ls"});
 
-var config = Program.$("config","Configuration");
-
-config.$("show","show configuration",show_config);
+Program.$("config","Configuration")
+    .$("show","show configuration",show_config);
 
 /*
 context.$(

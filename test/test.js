@@ -7,40 +7,30 @@ describe('Program', function(){
         it("should expose globalProgram()", function(){
             should.exist(Program);
             Program.should.be.type('function');
-        })
+        });
 
         it("should have $()", function(){
             Program.should.have.property('$');
             Program.$.should.be.type('function');
-        })
+        });
 
         it("should have run()",function(){
             Program.should.have.property('run');
             Program.run.should.be.type('function');
-        })
-
-        it("should have repl()",function(){
-            Program.should.have.property('repl');
-            Program.should.be.type('function');
-        })
-
-        it("should have daemonize()",function(){
-            Program.should.have.property('daemonize');
-            Program.daemonize.should.be.type('function');
-        })
-    })
+        });
+    });
 
     describe('context',function(){
         
         it('get root context: Program.$()',function(){
             Program.$().should.be.type('object');
-        })
+        });
 
         it('create context: Program.$("test","test description")',function(){
             Program.$("test","test description");
             Program.$().should.have.property('test');
             Program.$('test').should.be.type('object');
-        })
+        });
 
         describe('$("test")',function(){
 
@@ -48,26 +38,26 @@ describe('Program', function(){
                 var context = Program.$('test');
                 context.should.have.property('#');
                 context['#'].should.be.equal('test');
-            })
+            });
 
             it('help: ?',function(){
                 var context = Program.$('test');
                 context.should.have.property('?');
                 context['?'].should.be.equal('test description');
-            })
+            });
 
             it('parent: @',function(){
                 var context = Program.$('test');
                 context.should.have.property('@');
                 context['@'].should.be.equal(Program.$());  
-            })
+            });
 
             it('self: $',function(){
                 var context = Program.$('test');
                 context.should.have.property('$');
                 context['$'].should.be.type('function');
                 context.$().should.be.equal(context);
-            })
+            });
 
             it('two context nodes under same context',function(){
                 var context = Program.$('test');
@@ -75,7 +65,7 @@ describe('Program', function(){
                 context.$('test3','test3 description');
                 context.should.have.property('test2');
                 context.should.have.property('test3');
-            })
+            });
 
             it('two context nodes chained under context',function(){
                 var context = Program.$('test');
@@ -83,7 +73,7 @@ describe('Program', function(){
                 context.should.have.property('test3');
                 var c = context.$('test3');
                 c.should.have.property('test4');
-            })
+            });
 
             it('arangodep issue',function(){
                 var context = Program.$('test');
@@ -99,9 +89,9 @@ describe('Program', function(){
 
                 function app_add(){}
                 function app_rm(){}
-            })
-        })
-    })  
+            });
+        });
+    });  
 
     describe('command',function(){
         it('simple cmd',function(){
@@ -118,8 +108,10 @@ describe('Program', function(){
             cmd['@'].should.be.equal(Program.$());
             cmd['$'].should.be.type('function');
             cmd.$().should.be.equal(cmd);
-            cmd().should.be.equal("something");
-        })
+            
+	    var ret = Program('cmd');
+	    ret.should.be.equal("something");
+        });
 
         it('cmd2 with options',function(done){
             var cmd;
@@ -137,9 +129,11 @@ describe('Program', function(){
 
             cmd = Program.$('cmd2');
 
-            cmd['&']['hello']['?'].should.be.equal("string")
+	    var hello_opt = cmd['&'].filter(function(f){ return f.hasOwnProperty('hello') ? f : null; })[0];
 
-            Program.run('cmd2 hello="hello world" ten 10');
-        })
-    })
-})  
+            hello_opt.hello.should.have.property("string");
+
+            Program('cmd2 hello="hello world" ten 10');
+        });
+    });
+});  
