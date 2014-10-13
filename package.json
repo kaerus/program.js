@@ -1,5 +1,5 @@
 {
-    "name": "program",
+    "name": "node-program",
     "version": "0.3.3",
     "description": "A tool for creating nodejs command utilities",
     "keywords": [
