@@ -1,6 +1,6 @@
 {
     "name": "node-program",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "description": "A tool for creating nodejs command utilities",
     "keywords": [
 	"program",
@@ -18,7 +18,7 @@
 	"anders elo <anders@kaerus.com>"
     ],
     "dependencies": {
-	"micropromise": "*",
+	"micropromise": "0.4.6",
 	"printf": "*"
     },
     "devDependencies": {
