@@ -36,4 +36,4 @@ Program.application = {
     }
 };
 
-Program.run(); 
+Program.run();
